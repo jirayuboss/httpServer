@@ -10,7 +10,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <sys/uio.h>
-/*#include<sys/sendfile.h>*/
+#include<sys/sendfile.h>
 
 char webpage[] =
 "HTTP/1.1 200 OK\r\n"
@@ -18,8 +18,8 @@ char webpage[] =
 "<!DOCTYPE html>\r\n"
 "<html><head><title>CIE.KMITL</title>\r\n"
 "<style>body { background-color: #FFFFFF }</style></head>\r\n"
-"<body><center><h1>Boss is here!!</h1><br>\r\n";
-
+"<body><center><h1>Boss is here!!</h1><br>\r\n"
+"<img src=\"CIE-2.jpg\"></center></body></html>\r\n";
 
 int main(int argc, char *argv[])
 {
@@ -80,7 +80,7 @@ int main(int argc, char *argv[])
                         if(!strncmp(buf, "GET/CIE-2.jpg", 16))
                         {
                             fdimg = open("CIE-2.jpg", O_RDONLY);
-                            /*sendfile(fd_client, fdimg, NULL, 70000);*/
+                            sendfile(fd_client, fdimg, NULL, 70000);
                             close(fdimg);
                         }
                         
